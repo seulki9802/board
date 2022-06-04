@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import Bring from "./Bring";
-import PostList from "./PostList";
-import PostShow from "./PostShow";
+import Posts from "./Posts";
+import Post from "./Post";
 
 function Board () {
 
@@ -15,8 +15,8 @@ function Board () {
   return(
     <div className="Board-body">
 
-      <PostList posts={ posts } setPost={ setPost } setShow={ setShow }/>
-      {show? <PostShow post={ post } setShow={ setShow } /> :null}
+      <Posts posts={ posts } setPost={ setPost } setShow={ setShow }/>
+      {show? <Post post={ post } setShow={ setShow } /> :null}
 
     </div>
   )

@@ -20,9 +20,13 @@ function Bring (posts, setPosts) {
 
   //새 글 실시간으로 가져오기
   useEffect(() => {
-    socket.on('server-send', function(data){
+    socket.on('add', function(data) {
       if (data === 'fail') return alert('fail')
       setPosts([...posts, data])
+    })
+
+    socket.on('delete', function(data) {
+      setPosts(posts.filter( post => post._id != data._id ))
     })
   })
   

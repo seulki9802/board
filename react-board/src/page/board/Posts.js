@@ -10,7 +10,7 @@ function PostList({ posts, setPost, setShow }) {
     <div className="PostList">
       {[...posts].reverse().map((post, index) => {
         return (
-          <div key={ post.id } className="Post-box" id={ index } onClick={ postClick } >
+          <div key={ post._id } className="Post-box" id={ index } onClick={ postClick } >
             {post.title}
           </div>
         )

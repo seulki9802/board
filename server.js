@@ -48,9 +48,9 @@ io.on('connection', function(socket){
 
         // 디비 확인하고 저장
         db.collection('count').findOne({ name: 'count' }, function(error, result) {
-            data.id = result.count
+            data._id = result.count
             
-            db.collection('post').findOne({ id: result.count }, function(error, result) {
+            db.collection('post').findOne({ _id: result.count }, function(error, result) {
                 if (result) return io.emit('sever-send', 'fail')
 
                 db.collection('count').updateOne({ name : 'count' }, { $inc: { count : 1 } }, function(error, reuslt){
@@ -60,11 +60,26 @@ io.on('connection', function(socket){
                         if (error) return io.emit('sever-send', 'fail')
 
                             //클라이언트에게 새 글 보여주기
-                            io.emit('server-send', data)
+                            io.emit('add', data)
                             
                     })
                 })
             })
+        })
+        
+    })
+
+    //클라이언트가 글 삭제함
+    app.post('/post/delete', function(req, res) {
+
+        req.body._id = parseInt(req.body._id)
+        var data = req.body
+
+        db.collection('post').deleteOne(data, function(error, result) {
+            if (error) return res.sendStatus(400);
+            res.sendStatus(200);
+
+            io.emit('delete', data)
         })
         
     })
