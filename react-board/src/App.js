@@ -1,17 +1,14 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-
-import Head from './page/BoardHead';
 import Board from './page/board/Board';
 import Sign from './page/Sign';
+
 import './App.css';
 
 function App() {
 
   return (
     <div className="App">
-      {/* <Head /> */}
-
 
       <BrowserRouter>
 
