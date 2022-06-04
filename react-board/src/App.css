@@ -1,0 +1,66 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.Board-head-container {
+  background-color: black;
+  width: 72vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  height: 10vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Board-head-title {
+  float: left;
+  font-size: 8vh;
+}
+
+.Post-add {
+  background-color: green;
+  position: absolute;
+  width: 30vw;
+  height: 37.5vw;
+  top: 30vh;
+  left: 35vw;
+}
+
+.Post-add-button {
+  color: red;
+  border: 1px solid;
+  width: 5vh;
+  height: 5vh;
+  font-size: 4vh;
+  border-radius: 100%;
+
+  float: right;
+
+  cursor: pointer;
+}
+
+.Board-body {
+  background-color: rgb(29, 98, 129);
+  width: 72vw;
+  padding: 2vw;
+  min-height: 70vh;
+}
+
+.Post-box {
+  background-color: rgba(0, 0, 0, 0.371);
+  width: 20vw;
+  margin: 2vw;
+  height: 25vw;
+  float: left;
+}
