@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 
-import Board from './page/BoardHead';
-import Posts from './page/Board';
+import Head from './page/BoardHead';
+import Board from './page/board/Board';
 import Sign from './page/Sign';
 import './App.css';
 
@@ -10,14 +10,14 @@ function App() {
 
   return (
     <div className="App">
-      <Board />
+      <Head />
 
       <BrowserRouter>
         <Link to ='/'>///</Link>
         <Link to='/sigin'>sgsg</Link>
         
         <Routes>
-          <Route path='/' element={ <Posts /> } />
+          <Route path='/' element={ <Board /> } />
           <Route path='/sign' element={ <Sign /> } />
         </Routes>
       </BrowserRouter>

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Bring from "./board/Bring";
-import PostList from "./board/PostList";
-import PostShow from "./board/PostShow";
+import Bring from "./Bring";
+import PostList from "./PostList";
+import PostShow from "./PostShow";
 
 function Board () {
 
