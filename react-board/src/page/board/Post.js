@@ -1,6 +1,6 @@
 import $ from "jquery"
 
-function PostShow({ post, setShow }) {
+function Post({ post, setShow }) {
 
   function postDelete() {
 
@@ -17,7 +17,7 @@ function PostShow({ post, setShow }) {
   }
 
   return(
-    <div className="Post-add">
+    <div className="Board-post">
 
       {post._id}<br/>
       {post.title}<br/>
@@ -29,5 +29,5 @@ function PostShow({ post, setShow }) {
   )
 }
   
-export default PostShow;
+export default Post;
   

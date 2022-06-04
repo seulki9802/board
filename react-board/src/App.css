@@ -11,6 +11,45 @@
   font-size: calc(10px + 2vmin);
 }
 
+.NavBar {
+  background-color: black;
+  width: 100vw;
+  height: 10vh;
+  position: absolute;
+  top: 0;
+}
+
+.Board {
+  background-color: rgb(29, 98, 129);
+  width: 72vw;
+  padding: 2vw;
+  min-height: 70vh;
+  margin-top: 15vh;
+}
+
+.Board-add-btn {
+  background-color: red;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+
+  font-size: 30px;
+
+  position: absolute;
+  right: calc(12vw - 20px);
+  top: calc(15vh - 20px);
+}
+
+.Board-post, .Board-post-add {
+  background-color: green;
+  position: absolute;
+  width: 30vw;
+  height: 37.5vw;
+  top: 30vh;
+  left: 35vw;
+}
+
 .Board-head-container {
   background-color: black;
   width: 72vw;
@@ -48,13 +87,6 @@
   float: right;
 
   cursor: pointer;
-}
-
-.Board-body {
-  background-color: rgb(29, 98, 129);
-  width: 72vw;
-  padding: 2vw;
-  min-height: 70vh;
 }
 
 .Post-box {

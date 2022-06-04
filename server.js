@@ -40,25 +40,27 @@ app.get('/post/get', function(req, res) {
 
 })
 
-//보드에 들어오면
 io.on('connection', function(socket){
     
     //클라이언트가 새 글 씀
-    socket.on('client-send', function(data){
+    app.post('/post/add', function(req, res) {
+
+        var data = req.body
 
         // 디비 확인하고 저장
         db.collection('count').findOne({ name: 'count' }, function(error, result) {
             data._id = result.count
             
             db.collection('post').findOne({ _id: result.count }, function(error, result) {
-                if (result) return io.emit('sever-send', 'fail')
-
+                if (result) return res.sendState(400);
+    
                 db.collection('count').updateOne({ name : 'count' }, { $inc: { count : 1 } }, function(error, reuslt){
-                    if (error) return io.emit('sever-send', 'fail')
+                    if (error) return res.sendState(400);
                 
                     db.collection('post').insertOne(data, function(error, result) {
-                        if (error) return io.emit('sever-send', 'fail')
-
+                        if (error) return res.sendState(400);
+                            res.sendStatus(200);
+                            
                             //클라이언트에게 새 글 보여주기
                             io.emit('add', data)
                             
@@ -66,8 +68,8 @@ io.on('connection', function(socket){
                 })
             })
         })
-        
     })
+
 
     //클라이언트가 글 삭제함
     app.post('/post/delete', function(req, res) {

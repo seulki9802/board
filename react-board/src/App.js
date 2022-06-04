@@ -10,20 +10,32 @@ function App() {
 
   return (
     <div className="App">
-      <Head />
+      {/* <Head /> */}
+
 
       <BrowserRouter>
-        <Link to ='/'>///</Link>
-        <Link to='/sigin'>sgsg</Link>
-        
+
+        <Links />
+
         <Routes>
           <Route path='/' element={ <Board /> } />
           <Route path='/sign' element={ <Sign /> } />
         </Routes>
+
       </BrowserRouter>
 
     </div>
   );
+}
+
+function Links() {
+  return(
+    <div className='NavBar'>
+      <h3>Board</h3>
+      <Link to ='/'>///</Link>
+      <Link to='/sigin'>sgsg</Link>
+    </div>
+  )
 }
 
 export default App;
