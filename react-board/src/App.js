@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Board from './page/board/Board';
-import Sign from './page/Sign';
+import SignIn from './page/SignIn';
+import SignUp from './page/SignUp';
 
 import './App.css';
 
@@ -13,10 +14,10 @@ function App() {
       <BrowserRouter>
 
         <Links />
-
         <Routes>
           <Route path='/' element={ <Board /> } />
-          <Route path='/sign' element={ <Sign /> } />
+          <Route path='/signin' element={ <SignIn /> } />
+          <Route path='/signup' element={ <SignUp /> } />
         </Routes>
 
       </BrowserRouter>
@@ -30,7 +31,7 @@ function Links() {
     <div className='NavBar'>
       <h3>Board</h3>
       <Link to ='/'>///</Link>
-      <Link to='/sigin'>sgsg</Link>
+      <Link to='/signin'>sgsg</Link>
     </div>
   )
 }

@@ -31,6 +31,35 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/react-board/build/index.html');
 });
 
+
+
+app.post('/sign/up', function(req, res) {
+    console.log(req.body);
+
+    db.collection('member').findOne({ id: req.body.id }, function(error, result) {
+        if (result) return res.status(400).send('이미 존재하는 아이디입니다.');
+
+        db.collection('member').insertOne(req.body, function(error, result) {
+            if (error) return res.status(400).send('error');
+            res.sendStatus(200);
+        })
+    })
+})
+
+app.post('/sign/in', function(req, res) {
+    console.log('signiin, ', req.body);
+
+    db.collection('member').findOne(req.body, function(error, result) {
+        console.log(result)
+        if (!result) return res.status(400).send('아이디 비밀번호를 확인해주세요.');
+        res.sendStatus(200);
+    })
+})
+
+
+
+
+
 app.get('/post/get', function(req, res) {
 
     db.collection('post').find().toArray(function(error, result){
@@ -60,7 +89,7 @@ io.on('connection', function(socket){
                     db.collection('post').insertOne(data, function(error, result) {
                         if (error) return res.sendState(400);
                             res.sendStatus(200);
-                            
+
                             //클라이언트에게 새 글 보여주기
                             io.emit('add', data)
                             
