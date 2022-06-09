@@ -33,7 +33,6 @@ function PostAdd() {
     if (title.length > 15) return alert('제목을 15자 이내로 작성해주세요.')
     if (content.length > 100) return alert('내용을 100자 이내로 작성해주세요.')
 
-
     var userID, data;
 
     //회원글쓰기인지 아닌지
