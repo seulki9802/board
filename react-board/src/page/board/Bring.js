@@ -9,7 +9,7 @@ function Bring (posts, setPosts) {
   //기존 글 가져오기
   useEffect(() => {
     $.ajax({
-      method: 'get',
+      method: 'post',
       url: '/post/get'
     }).done(function(result){
       setPosts(result)

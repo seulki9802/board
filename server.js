@@ -9,7 +9,7 @@ const { Server } = require('socket.io');
 // const cors = require('cors');
 const io = new Server(http);
 
-app.use('/', express.static(__dirname + '/react-board/build'));
+app.use(express.static(__dirname + '/react-board/build'));
 
 const bodyParser = require('body-parser');
 const res = require('express/lib/response');
@@ -27,14 +27,16 @@ MongoClient.connect(process.env.DB_URL, function(error, client){
     });
 })
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(__dirname + '/react-board/build/index.html');
 });
 
 
 
+
+
+
 app.post('/sign/up', function(req, res) {
-    console.log(req.body);
 
     db.collection('member').findOne({ id: req.body.id }, function(error, result) {
         if (result) return res.status(400).send('이미 존재하는 아이디입니다.');
@@ -47,10 +49,8 @@ app.post('/sign/up', function(req, res) {
 })
 
 app.post('/sign/in', function(req, res) {
-    console.log('signiin, ', req.body);
 
     db.collection('member').findOne(req.body, function(error, result) {
-        console.log(result)
         if (!result) return res.status(400).send('아이디 비밀번호를 확인해주세요.');
         res.sendStatus(200);
     })
@@ -60,7 +60,8 @@ app.post('/sign/in', function(req, res) {
 
 
 
-app.get('/post/get', function(req, res) {
+
+app.post('/post/get', function(req, res) {
 
     db.collection('post').find().toArray(function(error, result){
         if (error) return res.sendStatus(400);
