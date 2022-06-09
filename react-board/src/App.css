@@ -72,11 +72,10 @@ button {
 .Post-box, .Post-box-user {
   background-color: #F3E9DD;
 
-  /* width: 20vw; */
-  width: calc(20vw - 40px);
-  height: 25vw;
+  width: calc(16vw - 40px);
+  height: calc(16vw * 1.25);
 
-  margin: 2vw;
+  margin: 1vw;
   padding: 20px;
 
   border-radius: 10px;
@@ -88,6 +87,24 @@ button {
 
   position: relative;
   float: left;
+}
+
+/* 조금 작은 화면 */
+@media(max-width: 1100px) {
+  .Post-box, .Post-box-user {
+    width: calc(20vw - 40px);
+    height: calc(20vw * 1.25);
+    margin: 2vw;
+  }
+}
+
+/* 조금 작은 화면 */
+@media(max-width: 750px) {
+  .Post-box, .Post-box-user {
+    width: calc(30vw - 40px);
+    height: calc(28vw * 1.25);
+    margin: 3vw;
+  }
 }
 
 .Post-box-user {
@@ -112,14 +129,13 @@ button {
   border: 2px solid;
   border-radius: 10px;
 
-  position: absolute;
-  top: calc(50vh - 37.5vw / 2);
-  left: 35vw;
-
-  width: 30vw;
-  height: 37.5vw;
-
+  width: 195px;
+  height: calc(195px * 1.25);
   padding: 3vw;
+
+  position: absolute;
+  top: calc(50vh - 195px * 1.25 / 2);
+  left: calc(50vw - 195px / 2 - 3vw);
 }
 
 .Post-modal-user, .Post-add-modal-user {
