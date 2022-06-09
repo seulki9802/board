@@ -1,2 +1,5 @@
 # 확장자 무시
 *.env
+
+# 폴더 무시
+react-board/build/
