@@ -29,7 +29,7 @@ function App() {
 function Links() {
   return(
     <div className='NavBar'>
-      <h3>Board 떙떙씨</h3>
+      <h3>Board</h3>
       <Link to ='/'>///</Link>
       <Link to='/signin'>sgsg</Link>
     </div>

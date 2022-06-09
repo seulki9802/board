@@ -7,7 +7,7 @@ import PostAdd from "./PostAdd";
 
 function Board () {
 
-  const [posts, setPosts] = useState([]); //글 리스트
+  const [posts, setPosts] = useState([1]); //글 리스트
   const [post, setPost] = useState(posts[0]) //글
   const [show, setShow] = useState(false); //글 보여줄까
 

@@ -29,12 +29,13 @@
 
 .Board-add-btn {
   background-color: red;
+  /* background-color: red;
 
   width: 40px;
   height: 40px;
   border-radius: 100%;
 
-  font-size: 30px;
+  font-size: 30px; */
 
   position: absolute;
   right: calc(12vw - 20px);
