@@ -19,8 +19,8 @@ function PostList({ posts, setPost, setShow }) {
         return (
           <div key={ post._id } className={ className } id={ index } onClick={ postClick } >
             { post.title } <br/>
-            { post.content.substr(0, 30) }
-            { post.content.length > 30 ? ',,,' : null}
+            { post.content.substr(0, 22) }
+            { post.content.length > 22 ? ',,,' : null}
             <span className="Post-box-userID">{ post.user }</span>
           </div>
         )

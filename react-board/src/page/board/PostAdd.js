@@ -31,7 +31,7 @@ function PostAdd() {
     if (!title) return alert('제목을 작성하세요.');
     if (!content) return alert('내용을 작성하세요.');
     if (title.length > 15) return alert('제목을 15자 이내로 작성해주세요.')
-    if (content.length > 100) return alert('내용을 100자 이내로 작성해주세요.')
+    if (content.length > 300) return alert('내용을 100자 이내로 작성해주세요.')
 
     var userID, data;
 
@@ -84,8 +84,8 @@ function PostAdd() {
       {/* 글쓰는 창 */}
       {show?
         <div className={ className }>
-          <input className="Post-modal-input-title" name='title' />
-          <textarea className="Post-modal-input-content" name='content' />
+          <input className="Post-modal-input-title" name='title' placeholder="제목은 15자 이내로 작성 가능합니다."/>
+          <textarea className="Post-modal-input-content" name='content' placeholder="내용은 300자 이내로 작성 가능합니다" />
           <div className="Post-modal-btn-group">
             <button onClick={ postAdd }>add</button>
             <button onClick={ () => setShow(false) }>exit</button>
