@@ -38,6 +38,9 @@ app.get('*', function (req, res) {
 
 
 
+
+
+//passport 사용해서 쿠키관리
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
@@ -47,42 +50,6 @@ app.use(session({secret : '비밀코드', resave : true, saveUninitialized: fals
 app.use(passport.initialize());
 app.use(passport.session()); 
 
-
-app.post('/sign/up', function(req, res) {
-
-    db.collection('member').findOne({ id: req.body.id }, function(error, result) {
-        if (result) return res.status(400).send('이미 존재하는 아이디입니다.');
-
-        db.collection('member').insertOne(req.body, function(error, result) {
-            if (error) return res.status(400).send('error');
-            res.sendStatus(200);
-        })
-    })
-})
-
-app.post('/sign/in', passport.authenticate('local'), function(req, res){
-    res.sendStatus(200);
-});
-
-passport.use(new LocalStrategy({
-    usernameField: 'id',
-    passwordField: 'pw',
-    session: true,
-    passReqToCallback: false,
-}, function(id, pw, done){
-    db.collection('member').findOne({ id: id, pw: pw }, function(error, result) {
-        if (!result) return done(null, false);
-        done(null, result)
-        
-    })
-}))
-
-app.post('/sign/check', function(req, res) {
-    if (req.user) return res.status(200).send(req.user);
-    res.status(400).send(req.user);
-})
-
-
 passport.serializeUser(function (user, done) {
     done(null, user.id)
 });
@@ -91,6 +58,45 @@ passport.deserializeUser(function (id, done) {
     done(null, id)
 }); 
 
+//회원가입하기
+app.post('/sign/up', function(req, res) {
+
+    //이미 존재하는 이이디인지 확인하기
+    db.collection('member').findOne({ id: req.body.id }, function(error, result) {
+        if (result) return res.status(400).send('이미 존재하는 아이디입니다.');
+
+        //회원 추가하기
+        db.collection('member').insertOne(req.body, function(error, result) {
+            if (error) return res.status(400).send('error');
+            res.sendStatus(200);
+        })
+    })
+})
+
+//로그인 하기(passport 사용)
+app.post('/sign/in', passport.authenticate('local'), function(req, res){
+    res.sendStatus(200);
+});
+
+//로그인 하기
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'pw',
+    session: true,
+    passReqToCallback: false
+}, function(id, pw, done){
+    db.collection('member').findOne({ id: id, pw: pw }, function(error, result) {
+        if (!result) return done(null, false);
+        done(null, result)
+    })
+}))
+
+
+//로그인 상태인지 확인하기(쿠키쿠키쿠키)
+app.post('/sign/check', function(req, res) {
+    if (req.user) return res.status(200).send(req.user);
+    res.status(400).send(req.user);
+})
 
 
 
@@ -100,6 +106,9 @@ passport.deserializeUser(function (id, done) {
 
 
 
+
+
+//기존의 글들 갖다주기
 app.post('/post/get', function(req, res) {
 
     db.collection('post').find().toArray(function(error, result){
@@ -109,6 +118,8 @@ app.post('/post/get', function(req, res) {
 
 })
 
+
+//글 변경 사항 실시간으로 보여주기
 io.on('connection', function(socket){
     
     //클라이언트가 새 글 씀
@@ -130,7 +141,7 @@ io.on('connection', function(socket){
                         if (error) return res.sendState(400);
                             res.sendStatus(200);
 
-                            //클라이언트에게 새 글 보여주기
+                            //클라이언트에게 실시간으로 새 글 보여주기
                             io.emit('add', data)
                             
                     })
@@ -143,13 +154,12 @@ io.on('connection', function(socket){
     //클라이언트가 글 삭제함
     app.post('/post/delete', function(req, res) {
 
-        var user = req.body.user;
-        console.log(user)
-        if (user) console.log('user true');
-        else console.log('user false');
 
+        //글 삭제 권한 있는지 확인
+        var user = req.body.user;
         if ( user && user != req.user ) return res.status(400).send('너는 글 작성자가 아니십니다.');
 
+        //글 삭제하기
         req.body._id = parseInt(req.body._id)
         var data = req.body
 
@@ -157,33 +167,10 @@ io.on('connection', function(socket){
             if (error) return res.sendStatus(400);
             res.sendStatus(200);
 
+            //클라이언트에게 실시간으로 삭제된 글 알려주기
             io.emit('delete', data)
         })
         
     })
     
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.post('/sign/in', function(req, res) {
-
-//     db.collection('member').findOne(req.body, function(error, result) {
-//         if (!result) return res.status(400).send('아이디 비밀번호를 확인해주세요.');
-//         res.sendStatus(200);
-//     })
-// })
