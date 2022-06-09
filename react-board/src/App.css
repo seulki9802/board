@@ -89,10 +89,14 @@
   cursor: pointer;
 }
 
-.Post-box {
+.Post-box, .Post-box-user {
   background-color: rgba(0, 0, 0, 0.371);
   width: 20vw;
   margin: 2vw;
   height: 25vw;
   float: left;
+}
+
+.Post-box-user {
+  color: red;
 }

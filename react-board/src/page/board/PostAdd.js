@@ -1,13 +1,26 @@
+import { useState, useEffect } from "react";
 import $ from "jquery"
-import { useState } from "react";
 
 function PostAdd() {
+
+  const [user, setUser] = useState(false);
+
+  useEffect(() => {
+    $.ajax({
+      method: 'post',
+      url: '/sign/check'
+    }).done(function(result){
+      setUser(result);
+    }).fail(function(xhr, textStatus, errorThrown){
+      setUser(xhr.responseText);
+    })
+  }, [])
 
   const [show, setShow] = useState(false);
 
   function postAdd() {
 
-    var data = { title: $('input[name=title]').val(), date: new Date() };
+    var data = { user: user, title: $('input[name=title]').val(), date: new Date() };
 
     $.ajax({
       method: 'post',
@@ -23,6 +36,10 @@ function PostAdd() {
 
   return(
     <>
+      {user?
+      <h1>ooooo</h1>
+      :<h1>xxxxx</h1>}
+
       <div className="Board-add-btn" onClick={ () => setShow(true) }>+</div>
       {show?
         <div className="Board-post-add">

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Board from './page/board/Board';
-import SignIn from './page/SignIn';
-import SignUp from './page/SignUp';
+import SignIn from './page/sign/SignIn';
+import SignUp from './page/sign/SignUp';
 
 import './App.css';
 
@@ -29,7 +29,7 @@ function App() {
 function Links() {
   return(
     <div className='NavBar'>
-      <h3>Board</h3>
+      <h3>Board 떙떙씨</h3>
       <Link to ='/'>///</Link>
       <Link to='/signin'>sgsg</Link>
     </div>

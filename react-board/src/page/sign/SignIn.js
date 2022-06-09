@@ -17,7 +17,7 @@ function SignIn() {
     }).done(function(result){
       navigate('/');
     }).fail(function(xhr, textStatus, errorThrown){
-      alert(xhr.responseText)
+      alert('아이디 비빌번호를 확인해주세요.')
     })
 
   }

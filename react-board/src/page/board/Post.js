@@ -7,11 +7,11 @@ function Post({ post, setShow }) {
     $.ajax({
       method: 'post',
       url: '/post/delete',
-      data: { _id: post._id }
+      data: { _id: post._id, user: post.user }
     }).done(function(result){
       setShow(false);
     }).fail(function(xhr, textStatus, errorThrown){
-      console.log('fail');
+      alert(xhr.responseText);
     })
 
   }
@@ -20,6 +20,7 @@ function Post({ post, setShow }) {
     <div className="Board-post">
 
       {post._id}<br/>
+      {post.user}<br/>
       {post.title}<br/>
       {post.date}<br/>
 

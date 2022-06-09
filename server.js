@@ -36,6 +36,18 @@ app.get('*', function (req, res) {
 
 
 
+
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+const { sendStatus } = require('express/lib/response');
+
+app.use(session({secret : '비밀코드', resave : true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+
 app.post('/sign/up', function(req, res) {
 
     db.collection('member').findOne({ id: req.body.id }, function(error, result) {
@@ -48,13 +60,40 @@ app.post('/sign/up', function(req, res) {
     })
 })
 
-app.post('/sign/in', function(req, res) {
+app.post('/sign/in', passport.authenticate('local'), function(req, res){
+    res.sendStatus(200);
+});
 
-    db.collection('member').findOne(req.body, function(error, result) {
-        if (!result) return res.status(400).send('아이디 비밀번호를 확인해주세요.');
-        res.sendStatus(200);
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'pw',
+    session: true,
+    passReqToCallback: false,
+}, function(id, pw, done){
+    db.collection('member').findOne({ id: id, pw: pw }, function(error, result) {
+        if (!result) return done(null, false);
+        done(null, result)
+        
     })
+}))
+
+app.post('/sign/check', function(req, res) {
+    if (req.user) return res.status(200).send(req.user);
+    res.status(400).send(req.user);
 })
+
+
+passport.serializeUser(function (user, done) {
+    done(null, user.id)
+});
+
+passport.deserializeUser(function (id, done) {
+    done(null, id)
+}); 
+
+
+
+
 
 
 
@@ -104,6 +143,13 @@ io.on('connection', function(socket){
     //클라이언트가 글 삭제함
     app.post('/post/delete', function(req, res) {
 
+        var user = req.body.user;
+        console.log(user)
+        if (user) console.log('user true');
+        else console.log('user false');
+
+        if ( user && user != req.user ) return res.status(400).send('너는 글 작성자가 아니십니다.');
+
         req.body._id = parseInt(req.body._id)
         var data = req.body
 
@@ -117,3 +163,27 @@ io.on('connection', function(socket){
     })
     
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.post('/sign/in', function(req, res) {
+
+//     db.collection('member').findOne(req.body, function(error, result) {
+//         if (!result) return res.status(400).send('아이디 비밀번호를 확인해주세요.');
+//         res.sendStatus(200);
+//     })
+// })
