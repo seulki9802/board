@@ -5,6 +5,7 @@ function PostAdd() {
 
   const [user, setUser] = useState(''); //user 로그인 상태 확인
   const [membership, setMembership] = useState(false); //회원글쓰기 할지 말지 결정
+  const [className, setClassName] = useState('Post-add-modal');
   const [show, setShow] = useState(false); //글쓰는 창 보여줄지 말지
 
   //로그인 상태인지 서버에게 확인
@@ -24,11 +25,23 @@ function PostAdd() {
   //글 발행 함수
   function postAdd() {
 
+    var title = $('input[name=title]').val(),
+        content = $('textarea[name=content]').val();
+
+    if (!title) return alert('제목을 작성하세요.');
+    if (!content) return alert('내용을 작성하세요.');
+
+
     var userID, data;
 
     //회원글쓰기인지 아닌지
     membership ? userID = user : userID = ''
-    data = { user: userID, title: $('input[name=title]').val(), date: new Date() };
+    data = {
+      user: userID,
+      title: title,
+      content: content,
+      date: new Date()
+    };
 
     $.ajax({
       method: 'post',
@@ -49,28 +62,33 @@ function PostAdd() {
 
     setShow(true);
     setMembership(true);
+    setClassName('Post-add-modal Post-add-modal-user')
   }
 
   //익명 글쓰기 버튼 클릭
   function nonMember() {
     setShow(true);
     setMembership(false);
+    setClassName('Post-add-modal');
   }
 
   return(
     <>
       {/* 글쓰기 버튼 */}
-      <div className="Board-add-btn">
+      <div className="Post-add-btn-group">
         <button onClick={ member }>회원전용 글쓰기</button>
         <button onClick={ nonMember }>익명 글쓰기</button>
       </div>
       
       {/* 글쓰는 창 */}
       {show?
-        <div className="Board-post-add">
-          <input name='title' />
-          <button onClick={ postAdd }>add</button>
-          <button onClick={ () => setShow(false) }>exit</button>
+        <div className={ className }>
+          <input className="Post-modal-input-title" name='title' />
+          <textarea className="Post-modal-input-content" name='content' />
+          <div className="Post-modal-btn-group">
+            <button onClick={ postAdd }>add</button>
+            <button onClick={ () => setShow(false) }>exit</button>
+          </div>
         </div>
       :null}
     </>

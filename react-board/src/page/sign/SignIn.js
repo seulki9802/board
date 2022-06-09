@@ -24,14 +24,14 @@ function SignIn() {
 
   return (
     <div className="SignIn">
-      <h3>Sign In</h3>
+      <h2>Sign In</h2>
       <input name='id'/><br/>
       <input name='pw'/><br/>
       <button onClick={ signin }>sign in</button>
 
       <hr/>
 
-      아이디없ㄷ음?<br/>
+      아이디가 없으신가요?
       <Link to='/signup'>sign up</Link>
     </div>
       

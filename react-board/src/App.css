@@ -1,103 +1,191 @@
-.App {
-  text-align: center;
-  background-color: #282c34;
-  color: white;
+body{
+  -ms-overflow-style: none;
+  background-color: #DAB88B;
+}
+  
+ ::-webkit-scrollbar {
+   display: none;
+ }
 
-  min-height: 100vh;
+
+.App {
+  font-size: calc(10px + 2vmin);
+  color: #8E806A;
+}
+
+
+a {
+  text-decoration: none;
+  color: #F6F6F6;
+  font-weight: bold;
+}
+
+button {
+  font-size: calc(5px + 2vmin);
+
+  margin-right: 5px;
+  margin-bottom: 5px;
+
+
+  color: #8E806A;
+
+  border: none;
+  border-radius: 4px;
+
+  background-color: #fdf6ec90;
+}
+
+.NavBar {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
 
-.NavBar {
-  background-color: black;
+  background-color: #DAB88B;
   width: 100vw;
   height: 10vh;
   position: absolute;
   top: 0;
+  
+}
+
+.Links {
+  position: absolute;
+  right: 3vw;
 }
 
 .Board {
-  background-color: rgb(29, 98, 129);
+  overflow: scroll;
+  background-color: #FDF6EC;
   width: 72vw;
-  padding: 2vw;
-  min-height: 70vh;
+  margin-left: 12vw;
   margin-top: 15vh;
-}
+  padding: 2vw;
+  height: calc(85vh - 4vw);
 
-.Board-add-btn {
-  background-color: red;
-  /* background-color: red;
+  /* height: 75vh; */
 
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
+  border-radius: 10px;
 
-  font-size: 30px; */
-
-  position: absolute;
-  right: calc(12vw - 20px);
-  top: calc(15vh - 20px);
-}
-
-.Board-post, .Board-post-add {
-  background-color: green;
-  position: absolute;
-  width: 30vw;
-  height: 37.5vw;
-  top: 30vh;
-  left: 35vw;
-}
-
-.Board-head-container {
-  background-color: black;
-  width: 72vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  height: 10vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.Board-head-title {
-  float: left;
-  font-size: 8vh;
-}
-
-.Post-add {
-  background-color: green;
-  position: absolute;
-  width: 30vw;
-  height: 37.5vw;
-  top: 30vh;
-  left: 35vw;
-}
-
-.Post-add-button {
-  color: red;
-  border: 1px solid;
-  width: 5vh;
-  height: 5vh;
-  font-size: 4vh;
-  border-radius: 100%;
-
-  float: right;
-
-  cursor: pointer;
 }
 
 .Post-box, .Post-box-user {
-  background-color: rgba(0, 0, 0, 0.371);
-  width: 20vw;
-  margin: 2vw;
+  background-color: #F3E9DD;
+
+  /* width: 20vw; */
+  width: calc(20vw - 40px);
   height: 25vw;
+
+  margin: 2vw;
+  padding: 20px;
+
+  border-radius: 10px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
   float: left;
 }
 
 .Post-box-user {
-  color: red;
+  background-color: #B7CADB;
+}
+
+.Post-box-userID {
+  font-size: calc(5px + 2vmin);
+
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.Post-modal, .Post-add-modal {
+  overflow: scroll;
+  white-space: pre-line;
+
+  background-color: #F3E9DD;
+  /* filter: brightness(92%); */
+
+  border: 2px solid;
+  border-radius: 10px;
+
+  position: absolute;
+  top: calc(50vh - 37.5vw / 2);
+  left: 35vw;
+
+  width: 30vw;
+  height: 37.5vw;
+
+  padding: 3vw;
+}
+
+.Post-modal-user, .Post-add-modal-user {
+  background-color: #B7CADB;
+}
+
+.Post-modal-input-title {
+  margin-top: calc(5px + 2vmin + 10px);
+  padding: 5%;
+  width: 90%;
+  height: 5%;
+  border: none;
+  border-radius: 10px;
+  font-size: calc(5px + 2vmin);
+  color: #8E806A
+}
+
+.Post-modal-input-content {
+  padding: 5%;
+  width: 90%;
+  height: 60%;
+  margin-top: 5%;
+  border: none;
+  border-radius: 10px;
+  font-size: calc(5px + 2vmin);
+  color: #8E806A
+}
+
+.Post-modal-btn-group {
+  position: inherit;
+  top: 10px;
+  right: 10px;
+}
+
+.Post-add-btn-group {
+  width: 3vw;
+  position: absolute;
+  top: 16vh;
+  right: calc(12vw - 3vw + 2px);
+}
+
+.Post-add-btn-group button {
+  padding: 10px;
+}
+
+
+.SignIn, .SignUp {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.SignIn input, .SignUp input {
+  width: 300px;
+  padding: 2vw;
+  border: none;
+  border-radius: 10px;
+  font-size: calc(10px + 2vmin);
+
+  color: #8E806A
+}
+
+.SignIn button, .SignUp button {
+  height: 50px;
+  width: 100px;
+  font-size: calc(10px + 2vmin);
 }

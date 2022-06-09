@@ -16,16 +16,24 @@ function Post({ post, setShow }) {
 
   }
 
+
+  //회원이 쓴 글인지
+  var className = "Post-modal";
+  if (post.user) className += ' Post-modal-user'
+
   return(
-    <div className="Board-post">
+    <div className={ className }>
 
       {post._id}<br/>
       {post.user}<br/>
       {post.title}<br/>
+      {post.content}<br/>
       {post.date}<br/>
 
-      <button onClick={ () => setShow(false) }>exit</button>
-      <button onClick={ postDelete }>delte</button>
+      <div className="Post-modal-btn-group">
+        <button onClick={ () => setShow(false) }>exit</button>
+        <button onClick={ postDelete }>delte</button>
+      </div>
     </div>
   )
 }

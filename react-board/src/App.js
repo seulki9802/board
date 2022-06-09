@@ -29,9 +29,11 @@ function App() {
 function Links() {
   return(
     <div className='NavBar'>
-      <h3>Board</h3>
-      <Link to ='/'>///</Link>
-      <Link to='/signin'>sgsg</Link>
+      <Link to='/'><h1>Board</h1></Link>
+      <div className='Links'>
+        <Link to ='/'>board</Link>/
+        <Link to='/signin'>sign in</Link>
+      </div>
     </div>
   )
 }

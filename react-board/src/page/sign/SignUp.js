@@ -26,7 +26,7 @@ function SignUp() {
 
   return (
     <div className="SignUp">
-      <h3>Sign Up</h3>
+      <h2>Sign Up</h2>
       <input name='id'/><br/>
       <input name='pw'/><br/>
       <button onClick={ signup }>sign up</button>
