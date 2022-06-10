@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import $ from "jquery";
 
-function My({ user }) {
+function MyPost({ user }) {
 
   const [posts, setPosts] = useState([])
 
@@ -38,10 +38,6 @@ function My({ user }) {
   }
 
   return (
-    <div className="My">
-
-      <h1>Hello, { user }!</h1>
-      <h3>내가 쓴 글 보기</h3>
       <div className="My-posts">
 
         {[...posts].reverse().map((post, index) => {
@@ -49,10 +45,8 @@ function My({ user }) {
           return (
             <div key={ post._id } className='My-post'>
               
-              <button onClick={ postDelete } data-id={ post._id } >delte</button>
+              <button onClick={ postDelete } data-id={ post._id } >delte</button><br/>
 
-              {post._id}<br/>
-              {post.user}<br/>
               {post.title}<br/>
               {post.content}<br/>
               {post.date}<br/>
@@ -62,11 +56,7 @@ function My({ user }) {
         })}
 
       </div>
-      
-      <h3>알림 - 강교용님이 좋아요를 눌렀습니다.</h3>
-
-    </div>
   );
 }
 
-export default My;
+export default MyPost;

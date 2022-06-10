@@ -6,7 +6,7 @@ import NavBar from './page/NavBar';
 import Board from './page/board/Board';
 import SignIn from './page/sign/SignIn';
 import SignUp from './page/sign/SignUp';
-import My from './page/My';
+import My from './page/my/My';
 
 import './App.css';
 
