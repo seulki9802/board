@@ -178,11 +178,23 @@ io.on('connection', function(socket){
 
         var postID = parseInt(req.body._id)
         
+        //좋아요 올리기
         db.collection('post').updateOne({ _id: postID}, { $inc: { like : 1 } }, function(error, result) {
             if (error) return res.sendStatus(400);
             res.sendStatus(200);
 
+            //좋아요 오른 거 실시간으로 알려주기
             io.emit('like', postID)
+
+            //좋아요 알림 등록
+            var noticData = {
+                to: req.body.to, //누구에게
+                from: req.user, //누가
+                kind: 'like', //어떤 알림
+                where: req.body._id,
+                date: req.body.date //언제
+            }
+            db.collection('notification').insertOne(noticData)
         })
     })
     
@@ -193,6 +205,16 @@ app.post('/my/get', function(req, res) {
 
     db.collection('post').find({ user : req.user }).toArray(function(error, result){
         if (error) return res.sendStatus(400);
-        res.send(result)
+        res.send(result);
     })
+})
+
+app.post('/my/notification', function(req, res) {
+
+    db.collection('notification').find({ to: req.user }).toArray(function(error, result) {
+        console.log(result);
+        if (error) return res.sendStatus(400);
+        res.send(result);
+    })
+
 })

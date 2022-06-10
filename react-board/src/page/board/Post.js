@@ -23,7 +23,7 @@ function Post({ post, setShow }) {
     $.ajax({
       method: 'post',
       url: '/post/like',
-      data: { _id: post._id  }
+      data: { _id: post._id, to: post.user, date: new Date() }
     }).done(function(result){
     }).fail(function(xhr, textStatus, errorThrown){
     })
