@@ -5,7 +5,7 @@ import Posts from "./Posts";
 import Post from "./Post";
 import PostAdd from "./PostAdd";
 
-function Board () {
+function Board({ user }) {
 
   const [posts, setPosts] = useState([]); //글 리스트
   const [post, setPost] = useState(posts[0]) //글
@@ -23,7 +23,7 @@ function Board () {
       {show ? <Post post={ post } setShow={ setShow } /> : null}
 
       {/* add post */}
-      <PostAdd />
+      <PostAdd user={ user }/>
 
     </div>
   )

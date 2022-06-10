@@ -1,26 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import $ from "jquery"
 
-function PostAdd() {
+function PostAdd({ user }) {
 
-  const [user, setUser] = useState(''); //user 로그인 상태 확인
   const [membership, setMembership] = useState(false); //회원글쓰기 할지 말지 결정
   const [className, setClassName] = useState('Post-add-modal');
   const [show, setShow] = useState(false); //글쓰는 창 보여줄지 말지
-
-  //로그인 상태인지 서버에게 확인
-  useEffect(() => {
-    $.ajax({
-      method: 'post',
-      url: '/sign/check'
-    }).done(function(result){
-      //로그인 상태면 유저 아이디가 user에 담김
-      setUser(result);
-    }).fail(function(xhr, textStatus, errorThrown){
-      //비로그인 상태면 ''가 user에 담김
-      setUser(xhr.responseText);
-    })
-  }, [])
 
   //글 발행 함수
   function postAdd() {

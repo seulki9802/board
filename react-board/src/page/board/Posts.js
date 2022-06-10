@@ -1,4 +1,4 @@
-function PostList({ posts, setPost, setShow }) {
+function Posts({ posts, setPost, setShow }) {
 
   function postClick(e) {
     //보여줄 포스트 인덱스(역순)
@@ -19,8 +19,8 @@ function PostList({ posts, setPost, setShow }) {
         return (
           <div key={ post._id } className={ className } id={ index } onClick={ postClick } >
             { post.title } <br/>
-            { post.content.substr(0, 22) }
-            { post.content.length > 22 ? ',,,' : null}
+            { post.content.substr(0, 25) }
+            { post.content.length > 25 ? ',,' : null}
             <span className="Post-box-userID">{ post.user }</span>
           </div>
         )
@@ -29,4 +29,4 @@ function PostList({ posts, setPost, setShow }) {
   )
 }
 
-export default PostList;
+export default Posts;

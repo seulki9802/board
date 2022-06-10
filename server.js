@@ -174,3 +174,13 @@ io.on('connection', function(socket){
     })
     
 })
+
+
+app.post('/my/get', function(req, res) {
+
+    db.collection('post').find({ user : req.user }).toArray(function(error, result){
+        console.log(result);
+        if (error) return res.sendStatus(400);
+        res.send(result)
+    })
+})
