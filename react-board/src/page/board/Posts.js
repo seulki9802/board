@@ -1,3 +1,5 @@
+import heart from '../../assets/heart.png'
+
 function Posts({ posts, setPost, setShow }) {
 
   function postClick(e) {
@@ -18,10 +20,18 @@ function Posts({ posts, setPost, setShow }) {
         
         return (
           <div key={ post._id } className={ className } id={ index } onClick={ postClick } >
+
+            <span className="Post-box-userID">{ post.user }</span>
+
             { post.title } <br/>
             { post.content.substr(0, 25) }
             { post.content.length > 25 ? ',,' : null}
-            <span className="Post-box-userID">{ post.user }</span>
+
+
+            <div className='Post-box-heart'>
+              <img src={ heart } alt="heart" /> {post.like}
+            </div>
+
           </div>
         )
       })}

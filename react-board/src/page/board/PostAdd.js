@@ -26,6 +26,7 @@ function PostAdd({ user }) {
       user: userID,
       title: title,
       content: content,
+      like: 0,
       date: new Date()
     };
 

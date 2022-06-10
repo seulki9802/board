@@ -6,24 +6,24 @@ import Post from "./Post";
 import PostAdd from "./PostAdd";
 
 function Board({ user }) {
-
-  const [posts, setPosts] = useState([]); //글 리스트
+  
+  const [posts, setPosts] = useState([]); //글들
   const [post, setPost] = useState(posts[0]) //글
   const [show, setShow] = useState(false); //글 보여줄까
 
-  Bring(posts, setPosts); //글 가져오기
-
+  Bring(posts, setPosts); //글 가져오기, 실시간 변경 반영
+  
   return(
     <div className="Board">
 
       {/* show posts & click */}
-      <Posts posts={ posts } setPost={ setPost } setShow={ setShow }/>
+      <Posts posts={ posts } setPost={ setPost } setShow={ setShow } />
 
       {/* show post & delete */}
       {show ? <Post post={ post } setShow={ setShow } /> : null}
 
       {/* add post */}
-      <PostAdd user={ user }/>
+      <PostAdd user={ user } />
 
     </div>
   )

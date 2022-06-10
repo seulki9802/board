@@ -121,10 +121,11 @@ app.post('/post/get', function(req, res) {
 
 //글 변경 사항 실시간으로 보여주기
 io.on('connection', function(socket){
-    
+
     //클라이언트가 새 글 씀
     app.post('/post/add', function(req, res) {
 
+        req.body.like = parseInt(req.body.like)
         var data = req.body
 
         // 디비 확인하고 저장
@@ -154,7 +155,6 @@ io.on('connection', function(socket){
     //클라이언트가 글 삭제함
     app.post('/post/delete', function(req, res) {
 
-
         //글 삭제 권한 있는지 확인
         var user = req.body.user;
         if ( user && user != req.user ) return res.status(400).send('너는 글 작성자가 아니십니다.');
@@ -168,9 +168,22 @@ io.on('connection', function(socket){
             res.sendStatus(200);
 
             //클라이언트에게 실시간으로 삭제된 글 알려주기
-            io.emit('delete', data)
+            io.emit('delete', data._id)
         })
         
+    })
+
+    //좋아요 누름
+    app.post('/post/like', function(req, res) {
+
+        var postID = parseInt(req.body._id)
+        
+        db.collection('post').updateOne({ _id: postID}, { $inc: { like : 1 } }, function(error, result) {
+            if (error) return res.sendStatus(400);
+            res.sendStatus(200);
+
+            io.emit('like', postID)
+        })
     })
     
 })
@@ -179,7 +192,6 @@ io.on('connection', function(socket){
 app.post('/my/get', function(req, res) {
 
     db.collection('post').find({ user : req.user }).toArray(function(error, result){
-        console.log(result);
         if (error) return res.sendStatus(400);
         res.send(result)
     })

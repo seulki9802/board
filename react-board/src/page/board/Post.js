@@ -1,4 +1,6 @@
 import $ from "jquery"
+import heart from '../../assets/heart.png'
+
 
 function Post({ post, setShow }) {
 
@@ -12,6 +14,18 @@ function Post({ post, setShow }) {
       setShow(false);
     }).fail(function(xhr, textStatus, errorThrown){
       alert(xhr.responseText);
+    })
+
+  }
+
+  function likeAdd () {
+
+    $.ajax({
+      method: 'post',
+      url: '/post/like',
+      data: { _id: post._id  }
+    }).done(function(result){
+    }).fail(function(xhr, textStatus, errorThrown){
     })
 
   }
@@ -34,6 +48,12 @@ function Post({ post, setShow }) {
         <button onClick={ () => setShow(false) }>exit</button>
         <button onClick={ postDelete }>delte</button>
       </div>
+
+      <div className="Post-modal-heart">
+        <img src={ heart } alt="heart" onClick={ likeAdd }/> {post.like}
+      </div>
+
+
     </div>
   )
 }

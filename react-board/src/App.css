@@ -115,8 +115,20 @@ button {
   font-size: calc(5px + 2vmin);
 
   position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.Post-box-heart {
+  font-size: calc(5px + 2vmin);
+
+  position: absolute;
   bottom: 5px;
   right: 5px;
+}
+
+.Post-box-heart img {
+  height: calc(5px + 2vmin);
 }
 
 .Post-modal, .Post-add-modal {
@@ -131,11 +143,15 @@ button {
 
   width: 195px;
   height: calc(195px * 1.25);
-  padding: 3vw;
+  padding: 20px;
 
   position: absolute;
   top: calc(50vh - 195px * 1.25 / 2);
   left: calc(50vw - 195px / 2 - 3vw);
+}
+
+.Post-modal {
+  padding-top: 60px;
 }
 
 .Post-modal-user, .Post-add-modal-user {
@@ -168,6 +184,18 @@ button {
   position: inherit;
   top: 10px;
   right: 10px;
+}
+
+.Post-modal-heart {
+  font-size: calc(10px + 2vmin);
+
+  position: inherit;
+  top: 10px;
+  left: 10px;
+}
+
+.Post-modal-heart img {
+  height: calc(10px + 2vmin);
 }
 
 .Post-add-btn-group {
