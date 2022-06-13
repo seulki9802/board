@@ -29,7 +29,7 @@ function Notice({ user, setNewNoti }) {
 
           return(
             <>
-            { noti.from }님이 { noti.where}번 글에 좋아요를 눌렀습니다.
+            { noti.from }님이 { noti.where }번 글에 좋아요를 눌렀습니다.
             <small>({ noti.date })</small>
             {noti.check? null: <samll className="My-noti-new">new</samll>}
             <br/>

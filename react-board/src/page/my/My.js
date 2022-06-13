@@ -17,7 +17,7 @@ function My({ user }) {
       <Post user={ user } />
 
       <h3>알림 보기 +{ newNoti }</h3>
-      <Notice user={ user } newNoti={ newNoti } setNewNoti={ setNewNoti } />
+      <Notice user={ user } setNewNoti={ setNewNoti } />
 
     </div>
   );
