@@ -190,7 +190,7 @@ io.on('connection', function(socket){
             var noticData = {
                 to: req.body.to, //누구에게
                 from: req.user, //누가
-                kind: 'like', //어떤 알림
+                kind: 'like', //어떤 알림xq
                 where: req.body._id,
                 date: req.body.date //언제
             }
@@ -211,10 +211,11 @@ app.post('/my/get', function(req, res) {
 
 app.post('/my/notification', function(req, res) {
 
-    db.collection('notification').find({ to: req.user }).toArray(function(error, result) {
-        console.log(result);
+    db.collection('notification').find({ to: req.user }).sort({ "_id" : -1 }).toArray(function(error, result) {
         if (error) return res.sendStatus(400);
         res.send(result);
+
+        db.collection('notification').updateMany({ to: req.user }, { $set: { check: 1 } })
     })
 
 })

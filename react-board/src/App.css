@@ -1,11 +1,11 @@
 body{
-  -ms-overflow-style: none;
+  /* -ms-overflow-style: none; */
   background-color: #DAB88B;
 }
   
- ::-webkit-scrollbar {
+ /* ::-webkit-scrollbar {
    display: none;
- }
+ } */
 
 
 .App {
@@ -235,11 +235,16 @@ button {
 }
 
 .My {
-  height: 100vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.My h3 {
+  cursor: pointer;
 }
 
 .My-posts {
@@ -247,7 +252,8 @@ button {
   background-color: #FDF6EC;
   width: 72vw;
   padding: 2vw;
-  height: calc(40vh - 4vw);
+  /* height: calc(30vh - 4vw); */
+  height: 400px;
 
   border-radius: 10px;
 }
@@ -291,3 +297,30 @@ button {
   }
 }
 
+.My-notification {
+  overflow: scroll;
+  background-color: #FDF6EC;
+  width: 72vw;
+  padding: 2vw;
+  /* height: calc(25vh - 4vw); */
+  height: 400px;
+
+  border-radius: 10px;
+}
+
+.My-noti-new {
+  margin-left: 5px;
+
+  text-align: center;
+
+  color: #F47C7C;
+  background-color: #FFF2F2;
+
+  padding-left: 5px;
+  padding-right: 5px;
+
+
+  border: none;
+  border-radius: 4px;
+
+}
