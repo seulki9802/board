@@ -46,7 +46,7 @@ function SignIn({ setUser }) {
     <div className="SignIn">
       <h2>Sign In</h2>
       <input name='id'/><br/>
-      <input name='pw'/><br/>
+      <input name='pw' type='password' /><br/>
       <button onClick={ signin }>sign in</button>
 
       <hr/>
