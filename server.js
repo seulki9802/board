@@ -39,6 +39,8 @@ app.get('*', function (req, res) {
 
 
 
+//비밀번호 암호화
+const bcrypt = require('bcrypt')
 
 //passport 사용해서 쿠키관리
 const passport = require('passport');
@@ -66,6 +68,7 @@ app.post('/sign/up', function(req, res) {
         if (result) return res.status(400).send('이미 존재하는 아이디입니다.');
 
         //회원 추가하기
+        req.body.pw = bcrypt.hashSync(req.body.pw, 10); //암호화
         db.collection('member').insertOne(req.body, function(error, result) {
             if (error) return res.status(400).send('error');
             res.sendStatus(200);
@@ -85,9 +88,13 @@ passport.use(new LocalStrategy({
     session: true,
     passReqToCallback: false
 }, function(id, pw, done){
-    db.collection('member').findOne({ id: id, pw: pw }, function(error, result) {
+    
+    db.collection('member').findOne({ id: id }, function(error, result) {
         if (!result) return done(null, false);
-        done(null, result)
+        bcrypt.compare(pw, result.pw, (error, same) => { //복호화
+            if (!same) return done(null, false);
+            done(null, result)
+        })
     })
 }))
 
