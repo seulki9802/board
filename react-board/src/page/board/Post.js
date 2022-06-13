@@ -38,8 +38,8 @@ function Post({ post, setShow }) {
   return(
     <div className={ className }>
 
-      {post._id}<br/>
-      <b><small>{ post.user }</small></b><br/>
+      { post._id }<br/>
+      { post.user? <>{ post.user }<br/></> : null}
       <strong>{post.title}</strong><hr/>
       { post.content }<hr/>
       <small>{ post.date }</small>
