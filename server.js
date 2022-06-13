@@ -201,6 +201,13 @@ io.on('connection', function(socket){
 })
 
 
+
+
+
+
+
+
+
 app.post('/my/get', function(req, res) {
 
     db.collection('post').find({ user : req.user }).toArray(function(error, result){
