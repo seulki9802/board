@@ -98,14 +98,19 @@ passport.use(new LocalStrategy({
     })
 }))
 
-
 //로그인 상태인지 확인하기(쿠키쿠키쿠키)
 app.post('/sign/check', function(req, res) {
     if (req.user) return res.status(200).send(req.user);
     res.status(400).send(req.user);
 })
 
-
+//로그아웃
+app.post('/sign/out', function(req, res) {
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        res.sendStatus(200);
+      });
+})
 
 
 
