@@ -169,7 +169,7 @@ io.on('connection', function(socket){
 
         //글 삭제 권한 있는지 확인
         var user = req.body.user;
-        if ( user && user != req.user ) return res.status(400).send('너는 글 작성자가 아니십니다.');
+        if ( user && user != req.user ) return res.status(400).send('글 작성자가 아닙니다.');
 
         //글 삭제하기
         req.body._id = parseInt(req.body._id)
