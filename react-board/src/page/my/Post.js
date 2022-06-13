@@ -47,8 +47,8 @@ function MyPost({ user }) {
           return (
             <div key={ post._id } className='My-post'>
               
-              <button onClick={ postDelete } data-id={ post._id } >delete</button>
               <img src={ heart } alt="heart"/> {post.like}
+              <button onClick={ postDelete } data-id={ post._id } >delete</button><br/>
 
               { post._id }<br/>
               { post.user }<br/>
