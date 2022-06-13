@@ -1,6 +1,9 @@
 # 확장자 무시
 *.env
+*.json
 
 # 폴더 무시
 react-board/build/
 react-board/node_modules/
+
+node_modules/
