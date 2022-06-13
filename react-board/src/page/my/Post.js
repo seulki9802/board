@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import $ from "jquery";
 
+import heart from '../../assets/heart.png'
+
 function MyPost({ user }) {
 
   const [posts, setPosts] = useState([])
@@ -45,11 +47,14 @@ function MyPost({ user }) {
           return (
             <div key={ post._id } className='My-post'>
               
-              <button onClick={ postDelete } data-id={ post._id } >delte</button><br/>
+              <button onClick={ postDelete } data-id={ post._id } >delete</button>
+              <img src={ heart } alt="heart"/> {post.like}
 
-              {post.title}<br/>
-              {post.content}<br/>
-              {post.date}<br/>
+              { post._id }<br/>
+              { post.user }<br/>
+              <strong>{post.title}</strong><hr/>
+              { post.content }<hr/>
+              <small>{ post.date }</small>
 
             </div>
           )
