@@ -39,10 +39,10 @@ function Post({ post, setShow }) {
     <div className={ className }>
 
       {post._id}<br/>
-      {post.user}<br/>
-      {post.title}<br/>
-      {post.content}<br/>
-      {post.date}<br/>
+      <b><small>{ post.user }</small></b><br/>
+      <strong>{post.title}</strong><hr/>
+      { post.content }<hr/>
+      <small>{ post.date }</small>
 
       <div className="Post-modal-btn-group">
         <button onClick={ () => setShow(false) }>exit</button>
