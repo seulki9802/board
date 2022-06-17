@@ -33,4 +33,5 @@
   - 내가 쓴 글 확인
   - 좋아요 알림 확인
 
-## Setting
+## 결과사진
+<img src='https://user-images.githubusercontent.com/72595355/174224998-784fcc1a-b46a-4965-9e85-1476db511f00.png' width='500'>
