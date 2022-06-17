@@ -1,6 +1,6 @@
 # BOARD
 **친구들과 함께 실시간으로 메모를 작성하고 좋아요를 눌러보세요!**
-- Skills: Node.js(express), MongoDB, React, JavaScript, HTML/CSS...
+- Skills: Node.js, MongoDB, React, JavaScript, HTML/CSS...
 
 ## 프로젝트 개요
 **🗣 메모지 같은 공간을 만들고싶다**
