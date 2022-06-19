@@ -1,11 +1,11 @@
 body{
-  /* -ms-overflow-style: none; */
+  -ms-overflow-style: none;
   background-color: #DAB88B;
 }
   
- /* ::-webkit-scrollbar {
+ ::-webkit-scrollbar {
    display: none;
- } */
+ }
 
 
 .App {
