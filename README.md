@@ -1,5 +1,6 @@
 # BOARD
 **친구들과 함께 실시간으로 메모를 작성하고 좋아요를 눌러보세요!**
+- Page: http://seulki.duckdns.org:7777
 - Skills: Node.js, MongoDB, React, JavaScript, HTML/CSS...
 
 ## 프로젝트 개요
@@ -33,5 +34,11 @@
   - 내가 쓴 글 확인
   - 좋아요 알림 확인
 
-## 결과사진
-<img src='https://user-images.githubusercontent.com/72595355/174224998-784fcc1a-b46a-4965-9e85-1476db511f00.png' width='500'>
+## Set
+- `git clone https://github.com/seulki9802/board.git`
+- `cd board`
+- `npm install`
+- `npm run build`
+- `cd ..`
+- board폴더 안에 .env 파일 생성, PORT='원하는 포트 입력' DB_URL='mongoDB connect URL입력'
+- `node server.js`
